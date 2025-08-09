@@ -5,11 +5,18 @@ const cors = require('cors');
 
 const userRoutes = require('./routes/userRoutes');
 const newsRoutes = require('./routes/newsRoutes');
-
 dotenv.config();
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+    origin: ['http://localhost:3000', 'https://latest-news-application.netlify.app'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(express.json());
 
