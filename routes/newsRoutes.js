@@ -1,11 +1,11 @@
 const express = require('express');
-const protect = require('../middleware/auth');
+const optionalAuth = require('../middleware/optionalAuth');
 const fetchNews = require('../utils/fetchNews');
 
 const router = express.Router();
 
 // Get news based on user's preference
-router.get('/', protect, async (req, res) => {
+router.get('/', optionalAuth, async (req, res) => {
     try {
         const categories = req?.user?.preferences?.categories || ['general'];
         const allNews = [];
