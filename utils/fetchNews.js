@@ -1,8 +1,20 @@
 const axios = require('axios');
 
-const fetchNews = async (category = 'general') => {
+const fetchNews = async (category = 'general', options = {}) => {
+    const { startDate, endDate, pageSize } = options;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=f831474618a243dfa53a109be7e5e877`;
+
+    if (startDate) {
+        url += `&from=${startDate}`;
+    }
+    if (endDate) {
+        url += `&to=${endDate}`;
+    }
+    if (pageSize) {
+        url += `&pageSize=${pageSize}`;
+    }
+
     try {
-        const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=f831474618a243dfa53a109be7e5e877`;
         console.log("🔎 Fetching news from:", url);
         const { data } = await axios.get(url);
 

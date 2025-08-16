@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const userRoutes = require('./routes/userRoutes');
 const newsRoutes = require('./routes/newsRoutes');
+require('./cron/newsAlerts');
 dotenv.config();
 const app = express();
 
